@@ -1,6 +1,6 @@
 <template>
   <!--  -->
-  <v-card color="grey lighten-4" class="mx-6 my-4 pa-4">
+  <v-card @click="deleteQuote(index)" color="grey lighten-4" class="mx-6 my-4 pa-4">
     <v-hover v-slot:default="{ hover }">
       <v-row>
         <slot></slot>
@@ -16,6 +16,17 @@
   </v-card>
   <!--  -->
 </template>
+
+<script>
+export default {
+  props: ["index"],
+  methods: {
+    deleteQuote(index) {
+      this.$emit("quoteDeleted", index);
+    }
+  }
+};
+</script>
 
 <style scoped>
 .row {

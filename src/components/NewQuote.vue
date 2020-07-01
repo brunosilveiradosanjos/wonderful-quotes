@@ -59,15 +59,10 @@ export default {
         console.log("ERROR!");
         this.submitStatus = "ERROR";
       } else {
-        console.log("PENDING!");
-        // do your submit logic here
-        this.submitStatus = "PENDING";
-        setTimeout(() => {
-          console.log("OK!");
-          this.submitStatus = "OK";
-          this.$emit("quoteAdded", this.quote);
-          this.quote = "";
-        }, 500);
+        console.log("OK!");
+        this.submitStatus = "OK";
+        this.$emit("quoteAdded", this.quote);
+        this.quote = "";
       }
     }
   }
