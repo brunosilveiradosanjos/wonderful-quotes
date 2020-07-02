@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div class="mx-6 mt-2 pa-4">
     <v-progress-linear :value="value" height="25">
-      <strong>{{ value }} / {{10*maxQuotes }}</strong>
+      <strong>{{ value }} / 100</strong>
     </v-progress-linear>
   </div>
 </template>
@@ -11,7 +11,7 @@ export default {
   props: ["quotes", "maxQuotes"],
   computed: {
     value() {
-      return 10 * this.quotes.length;
+      return (100 / this.maxQuotes) * this.quotes.length;
     }
   }
 };

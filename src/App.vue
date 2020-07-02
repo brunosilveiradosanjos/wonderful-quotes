@@ -30,6 +30,16 @@
     </v-app-bar>
 
     <v-main>
+      <div>
+        <v-alert
+          class="align-center mx-2 my-5 pa-4"
+          :value="alert"
+          color="red"
+          dark
+          border="top"
+          transition="scale-transition"
+        >Please delete quotes first</v-alert>
+      </div>
       <v-card class="ma-2 pa-4" height="100%">
         <app-header :quotes="quotes" :maxQuotes="maxQuotes"></app-header>
         <app-new-quote @quoteAdded="newQuote"></app-new-quote>
@@ -60,16 +70,21 @@ export default {
   },
   methods: {
     newQuote(quote) {
-      this.quotes.push(quote);
+      if (this.quotes.length >= this.maxQuotes) {
+        return (this.alert = true);
+      }
+      this.quotes.unshift(quote);
     },
     deleteQuote(index) {
+      this.alert = false;
       this.quotes.splice(index, 1);
     }
   },
   data() {
     return {
       quotes: ["Just a Quote to see something"],
-      maxQuotes: 10
+      maxQuotes: 5,
+      alert: false
     };
   },
   created() {
